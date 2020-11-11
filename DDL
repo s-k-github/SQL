@@ -1,0 +1,54 @@
+/*linkedin: supriyakolhe123*/
+
+1---> ALTER, CREATE , RENAME TABLE*/
+CREATE DATABASE DDL;
+USE DDL;
+
+CREATE TABLE Alter_Example
+(
+id INT,
+name VARCHAR(5),
+date DATE,
+PRIMARY KEY (id,name)
+);
+
+INSERT INTO Alter_Example VALUES(1,'sejal','1997-07-23');
+INSERT INTO Alter_Example VALUES(2,'sup','1997-07-22');
+INSERT INTO Alter_Example VALUES(3,'sunny','1997-07-21');
+
+SELECT* FROM Alter_Example;
+/*add column in existing table*/
+ALTER TABLE Alter_Example add age INT,
+user_location VARCHAR(10);
+
+/*DROP existing column*/
+ALTER TABLE Alter_Example DROP COLUMN age;
+
+/*alter column datatype*/
+ALTER TABLE Alter_Example ALTER COLUMN DATE DATETIME;
+
+/*add CHECK CONSTRAINT USING ALTER: 2 ways
+1. withought allocating name: droping CONSTRAINT isnt possible. fOR that TABLE must be droppped
+2. allocating name: recomENDed becaUSE droping contraINT is possible withought dropping table*/
+ALTER TABLE Alter_Example add CHECK (age>18 AND age <40);
+ALTER TABLE Alter_Example add age INT CONSTRAINT cs_age CHECK (age>18 AND age<40);
+
+/*date format: yyyy-mm-dd*/
+
+/*DROP CONSTRAINT*/
+ALTER TABLE Alter_Example DROP CONSTRAINT cs_age;
+
+/*rename table*/
+sp_rename 'Alter_Example','Alter_Empl';
+sp_rename 'Alter_Example.name','first_name','COLUMN';
+OR
+sp_rename 'Alter_Example.name','first_name';
+
+ALTER TABLE Employee_old RENAME TO Employee_current;
+
+2---> TRUNCATE, DROP, DELETE*/
+/*remove data but structure stays intact*/
+TRUNCATE TABLE temp;
+
+/*Delete data AND TABLE structure*/
+DROP TABLE temp;
